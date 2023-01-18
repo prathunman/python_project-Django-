@@ -1,0 +1,86 @@
+<html>
+<head>
+    {% load static %}
+    <title>Job portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>    
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+</head>
+<body>
+
+<nav id="header" class="bg-yellow-500 w-full z-10 top-0 shadow">
+    <div class="w-full container mx-auto flex flex-wrap items-center mt-0 pt-2 pb-2 md:pb-0">
+        <div class="w-1/2 pl-2 md:pl-5 md:pb-4 text-4xl text-violet-800 font-bold">
+            <h4>Job-Portal</h4>
+        </div>
+        <div class="w-1/2 pr-0">
+            <div class="flex relative inline-block float-right">
+                <div class="relative text-sm">
+                    <div id="userMenu" class="bg-white rounded shadow-md mt-2 absolute mt-12 top-0 right-0 min-w-full overflow-auto z-30 invisible">  
+                    </div>
+                </div>
+                <div class="block lg:hidden pr-4">
+                    <button id="nav-toggle" class="flex items-center px-3 py-2 mt-3 border rounded text-gray-500 border-gray-600 hover:text-green-800 hover:border-teal-500 appearance-none focus:outline-none">
+                        <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <title>Menu</title>
+                            <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="bg-black w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block mt-2 lg:mt-0 z-20" id="nav-content">
+            <ul class="list-reset lg:flex flex-1 items-center px-4 md:px-0 text-white ml-4">
+                <li class="mr-6 my-2 md:my-0">
+                    <a href="#" class="block py-1 md:py-3 pl-1 align-middle  no-underline hover:text-green-800 border-b-2 hover:border-green-600">
+                        <i class="fas fa-home fa-fw mr-3 "></i><span class="pb-1 md:pb-0 text-sm">Home</span>
+                    </a>
+                </li>
+                <li class="mr-6 my-2 md:my-0">
+                    <a href="{% url 'userlogin'%}" class="block py-1 md:py-3 pl-1 align-middle no-underline hover:text-green-800 border-b-2 border-white hover:border-green-600">
+                        User login
+                    </a>
+                </li>
+                <li class="mr-6 my-2 md:my-0">
+                    <a href="{% url 'companylogin'%}" class="block py-1 md:py-3 pl-1 align-middle no-underline hover:text-green-800 border-b-2 border-white hover:border-green-600">
+                        Company login
+                    </a>
+                </li>
+                <li class="mr-6 my-2 md:my-0">
+                    <a href="{% url 'adminlogin'%}" class="block py-1 md:py-3 pl-1 align-middle no-underline hover:text-green-800 border-b-2 border-white hover:border-green-600">
+                        Admin login
+                    </a>
+                </li>
+                <li class="mr-6 my-2 md:my-0">
+                    <a href="#" class="block py-1 md:py-3 pl-1 align-middle no-underline hover:text-green-800 border-b-2 border-white hover:border-green-600">
+                        Services
+                    </a>
+                </li>
+                <li class="mr-6 my-2 md:my-0">
+                    <a href="{% url 'latestJobList' %}" class="block py-1 md:py-3 pl-1 align-middle no-underline hover:text-green-800 border-b-2 border-white hover:border-green-600">
+                        Latest jobs
+                    </a>
+                </li>
+            </ul>
+
+            <div class="relative pull-right pl-4 pr-4 md:pr-0 mr-4 mb-2 pt-2">
+                <input type="search" placeholder="Search" class="w-full bg-gray-100 text-sm text-gray-800 transition border focus:outline-none focus:border-gray-700 rounded py-1 px-2 pl-10 appearance-none leading-normal">
+                <div class="absolute search-icon" style="top: 0.375rem;left: 1.75rem;">
+                    <img class="w-5 h-5 mb-2 ml-0 mt-2" src="{% static 'images/search.svg'%}" alt="search">
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</nav>
+
+<script src="{%static 'js/default.js'%}"></script>
+    
+</body>
+</html>

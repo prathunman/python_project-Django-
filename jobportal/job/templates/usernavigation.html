@@ -1,0 +1,108 @@
+<html>
+<head>
+    {% load static %}
+    <title>Job portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>    
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+</head>
+<body>
+
+<nav id="header" class="bg-ash-500 w-full z-10 top-0 shadow">
+    <div class="w-full container mx-auto flex flex-wrap items-center mt-0 pt-2 pb-2 md:pb-0">
+        <div class="w-1/2 pl-2 md:pl-5 md:pb-4 text-4xl text-violet-800 font-bold">
+            <h4>Job-Portal</h4>
+        </div>
+        <div class="relative mx-auto text-black lg:block hidden">
+            <input class="border-2 border-black bg-white h-10 pl-2 pr-8 rounded-lg text-sm focus:outline-none" type="search" name="search" placeholder="Search">
+            <button type="submit" class="absolute right-0 top-0 mt-3 mr-2">
+                <svg class="text-gray-600 h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg"
+                    version="1.1" id="Capa_1" x="0px" y="0px"
+                    viewBox="0 0 56.966 56.966" style="enable-background:new 0 0 56.966 56.966;"
+                    xml:space="preserve"
+                    width="512px" height="512px">
+                <path
+                    d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z"/>
+                </svg>
+            </button>
+        </div> 
+        <div class="pr-0">
+            <div class="flex relative inline-block float-right">
+                <div class="relative text-sm">
+                    <button id="userButton" class="flex items-center focus:outline-none mr-3 pt-2">
+                        <h1 class="text-xl font-bold pb-3">{{request.user.first_name }}</h1>
+                        <img class="w-10 h-10 rounded-full bg-white mb-4 mr-2" src="{% static 'images/account.svg' %}" alt="user photo">
+                    </button>
+                    <div id="userMenu" class="bg-white rounded shadow-md mt-2 absolute mt-12 top-0 right-0 min-w-full overflow-auto z-30 invisible">
+                        <ul class="list-reset">
+                            <li><a href="#" class="px-4 py-2 block text-gray-900 hover:bg-gray-400 no-underline hover:no-underline">My account</a></li>
+                            <li><a href="#" class="px-4 py-2 block text-gray-900 hover:bg-gray-400 no-underline hover:no-underline">Notifications</a></li>
+                            <li>
+                                <hr class="border-t mx-2 border-gray-400">
+                            </li>
+                            <li>
+                                <a href="{% url 'ULogout' %}"type="submit" name="logout" class="px-4 py-2 block text-gray-900 hover:bg-gray-400 no-underline hover:no-underline">Logout</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="block lg:hidden pr-4">
+                    <button id="nav-toggle" class="flex items-center px-3 py-2 mt-3 border rounded text-gray-500 border-gray-600 hover:text-green-800 hover:border-teal-500 appearance-none focus:outline-none">
+                        <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <title>Menu</title>
+                            <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<nav>
+    <div class="bg-black w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block mt-2 lg:mt-0 z-20" id="nav-content">
+        <ul class="list-reset lg:flex flex-1 items-center justify-center px-4 md:px-0 text-white ml-4">
+            <li class="mr-6 my-2 md:my-0">
+                <a href="#" class="block py-1 md:py-3 pl-1 align-middle  no-underline hover:text-green-800 border-b-2 hover:border-green-600">
+                    <i class="fas fa-home fa-fw mr-3 "></i><span class="pb-1 md:pb-0 text-sm">Home</span>
+                </a>
+            </li>
+            <li class="mr-6 my-2 md:my-0">
+                <a href="{% url 'userLatestJob'%}" class="block py-1 md:py-3 pl-1 align-middle no-underline hover:text-green-800 border-b-2 border-white hover:border-green-600">
+                    Job List
+                </a>
+            </li>
+            <li class="mr-6 my-2 md:my-0">
+                <a href="#" class="block py-1 md:py-3 pl-1 align-middle no-underline hover:text-green-800 border-b-2 border-white hover:border-green-600">
+                    Change password
+                </a>
+            </li>
+            <li class="mr-6 my-2 md:my-0">
+                <a href="#" class="block py-1 md:py-3 pl-1 align-middle no-underline hover:text-green-800 border-b-2 border-white hover:border-green-600">
+                    Customer Service
+                </a>
+            </li>
+            <!-- <li class="mr-6 my-2 md:my-0">
+                <a href="#" class="block py-1 md:py-3 pl-1 align-middle no-underline hover:text-green-800 border-b-2 border-white hover:border-green-600">
+                    Gift cards
+                </a>
+            </li> -->
+        </ul>
+
+            <!-- <div class="relative pull-right pl-4 pr-4 md:pr-0 mr-4 mb-2 pt-2">
+                <input type="search" placeholder="Search" class="w-full bg-gray-100 text-sm text-gray-800 transition border focus:outline-none focus:border-gray-700 rounded py-1 px-2 pl-10 appearance-none leading-normal">
+                <div class="absolute search-icon" style="top: 0.375rem;left: 1.75rem;">
+                <img class="w-5 h-5 mb-2 ml-0 mt-2" src="../resourse/search.svg" alt="search">
+            </div> -->
+        </div>
+
+    </div>
+</nav>
+
+<script src="{%static 'js/default.js'%}"></script>
+    
+</body>
+</html>

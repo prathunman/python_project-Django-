@@ -1,0 +1,56 @@
+<html>
+<head>
+    {% load static %}
+    <title>Status Change</title>
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+</head>
+<body>
+
+{% include 'adminNavigation.html' %}
+<div class="flex items-start">
+    <form action="" method="post" autocomplete="off" class="sign-in-form " name="login">
+        {% csrf_token %}
+        <h2 class="mt-4 text-center font-bold">Change company status</h2>
+        <div class="actual-form mt-4">
+            <div class="input-wrap">
+                <input
+                type="text"
+                value="{{company.company}}"
+                name="cname"
+                minlength="4"
+                class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500 mt-8"
+                autocomplete="off"
+                required
+                />
+                <label class="mb-4">Company Name</label>
+            </div>
+
+            <div class="input-wrap">
+                <label class="mb-4">Status</label>
+                <select name="status" class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500 mt-8">
+                    <option value="Accept">Accept</option>
+                    <option value="Reject">Reject</option>
+                </select>              
+            </div>
+            <input type="submit" name="signin" value="Sign In" class="mt-4 ml-2 my text-white bg-black hover:text-white border border-black hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-24 py-2 text-center mr-2 dark:border-purple-400 dark:text-purple-400 dark:hover:text-white dark:hover:bg-purple-500 dark:focus:ring-purple-900">
+        </div>
+    </form>
+</div>             
+
+{% if error == "no" %}
+<script>
+    alert("status changed Sccessful");
+    window.location=("{% url 'allCompany' %}")
+</script>
+{% endif%}
+
+
+{% if error == "yes" %}
+<script>
+    alert("Try agin");
+</script>
+{% endif %}
+
+<script src="{%static 'js/login.js'%}"></script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+{% load static %}
+
+{% block body %}
+
+{% include 'companyNavigation.html' %}
+
+<div class="overflow-x-auto relative shadow-md sm:rounded-lg p-4">
+    <h2 class="mt-4 mb-4 text-green-700 font-bold text-center text-3xl">Applied Candiate List</h2>
+    <table id="example" class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead class="text-xl text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="py-3 px-6">
+                    <span class="">S.No</span>
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    Full name
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    Email ID
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    Contact No
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    Job Title
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    Company
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    Applied Date
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    Resume
+                </th>
+            </tr>
+        </thead>
+        <tbody class="justify-center">
+            {% for i in data %}
+            {% if request.user.id == i.job.company.user.id%}
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <td class="p-4 w-32">
+                    {{forloop.counter}}
+                </td>
+                <td class="p-4 w-32">
+                    {{i.student.user.first_name}}
+                </td>
+                <td class="p-4 w-32">
+                    {{i.student.user.username}}
+                </td>
+                <td class="py-4 px-6 font-semibold text-gray-900 dark:text-white">
+                    {{i.student.phoneNo}}
+                </td>
+                <td class="py-4 px-6 font-semibold text-gray-900 dark:text-white">
+                    {{i.job.title}}
+                </td>
+                <td class="py-4 px-6 font-semibold text-gray-900 dark:text-white">
+                    {{i.job.company.company}}
+                </td>
+                <td class="py-4 px-6 font-semibold text-gray-900 dark:text-white">
+                    {{i.applyDate}}
+                </td>
+                <td class="flex space-x-2 py-4 px-6">
+                    <a href="{{i.resume.url}}}" class="text-yellow-400 hover:text-white border border-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-yellow-300 dark:text-yellow-300 dark:hover:text-white dark:hover:bg-yellow-400 dark:focus:ring-yellow-900">Download Resume</a>
+                </td>
+            </tr>
+            {% endif%}
+            {% endfor%}
+        </tbody>
+    </table>
+</div>
+
+
+
+{% endblock%}

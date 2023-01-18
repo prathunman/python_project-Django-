@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Details</title>
+    <script src="https://cdn.tailwindcss.com"></script>    
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+
+</head>
+<body>
+    <nav id="header" class="bg-ash-500 w-full z-10 top-0 shadow">
+        <div class="w-full container mx-auto flex flex-wrap items-center mt-0 pt-2 pb-2 md:pb-0">
+            <div class="w-1/2 pl-2 md:pl-5 md:pb-4 text-4xl text-violet-800 font-bold">
+                <h4>Job-Portal</h4>
+            </div>
+            <div class="relative mx-auto text-black lg:block hidden">
+            </div> 
+            <div class="pr-0">
+                <div class="flex relative inline-block float-right">
+                    <div class="relative text-sm">
+                        <button id="userButton" class="flex items-center focus:outline-none mr-3 pt-2">
+                            <img class="w-10 h-10 rounded-full bg-white mb-4 mr-2" src="{% static 'images/account.svg' %}" alt="user photo">
+                        </button>
+                        <div id="userMenu" class="bg-white rounded shadow-md mt-2 absolute mt-12 top-0 right-0 min-w-full overflow-auto z-30 invisible">
+                            <ul class="list-reset">
+                                <li><a href="#" class="px-4 py-2 block text-gray-900 hover:bg-gray-400 no-underline hover:no-underline">My account</a></li>
+                                <li><a href="#" class="px-4 py-2 block text-gray-900 hover:bg-gray-400 no-underline hover:no-underline">Notifications</a></li>
+                                <li>
+                                    <hr class="border-t mx-2 border-gray-400">
+                                </li>
+                                <li>
+                                    <a href="{% url 'ULogout' %}"type="submit" name="logout" class="px-4 py-2 block text-gray-900 hover:bg-gray-400 no-underline hover:no-underline">Logout</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="flex items-center mt-8">
+        <div class="container ml-auto mr-auto flex flex-wrap items-start">
+
+                <div class="w-full md:w-1/2 lg:w-1/4 pl-5 pr-5 mb-5 lg:pl-2 lg:pr-2">
+                    <div class="bg-white rounded-lg m-h-64 p-2">
+                        <figure class="mb-2">
+                            <img
+                              src="https://srv-cdn.onedio.com/store/bf2cbc886120f284ef46fd92a48f5fb58c62e6a50fbdf8fa796d057dd0ddc242.png"
+                              alt=""
+                              class="h-64 ml-auto mr-auto"
+                            />
+                        </figure>
+                        <div class="grid gap-y-2">
+                            <h5 class="text-black text-xl font-bold leading-none text-center">
+                                Company <p class="text-lg font-medium"> {{job.company.company}} </p>
+                            </h5>
+                            <h5 class="text-black text-xl font-bold leading-none text-center">
+                                Contact <p class="text-lg font-medium"> {{job.company.phoneNo}} </p>
+                            </h5>
+                            <h5 class="text-black text-xl font-bold leading-none text-center">
+                                Email ID <p class="text-lg font-medium"> {{job.company.user.username}}</p>
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-full md:w-1/2 lg:w-1/4 pl-5 pr-5 mb-5 lg:pl-2 lg:pr-2">
+                    <div class="bg-white rounded-lg m-h-80 p-2">
+                    <form action="" method="post">
+                        <div class="rounded-lg p-4 bg-slate-200 flex flex-col gap-y-4">
+                            <div class="text-center text-black">
+                                <h5 class="text-blue-600 text-xl font-bold leading-none">
+                                    {{job.title}}
+                                </h5>
+                            </div>
+                            <div class="text-left flex flex-col gap-y-4">
+                                <h5 class="text-black font-bold leading-none flex flex-col gap-y-2">
+                                    Time Period<p class="ml-4 font-medium text-gray-600">-{{job.startDate}} -> {{job.endDate}}</p>
+                                </h5>
+                                <h6 class="text-yellow-500 font-bold leading-none">
+                                    <span class="text-yellow-500 ">$</span>{{job.salary}}
+                                </h6>
+                                <h5 class="text-black leading-none font-bold flex flex-col gap-y-2">
+                                    Skill
+                                    <p class="ml-4 font-medium text-gray-600">-{{job.skills}}</p>
+                                </h5>
+                                <h5 class="text-black leading-none font-bold flex flex-col gap-y-2">
+                                    Experience
+                                    <p class="ml-4 font-medium text-gray-600">-{{job.experience}}year</p>
+                                </h5>
+                                <h5 class="text-black font-bold leading-none flex flex-col gap-y-2">
+                                    Location<p class="ml-4 font-medium text-gray-600">-{{job.location}}</p>
+                                </h5>
+                                <h5 class="text-gray-600 font-bold leading-none">
+                                    {{job.description}}
+                                </h5>
+                            </div>
+                            <div class="flex items-center float-right">
+                                <a href="{%url 'applyForJob' job.id %}" type="button" class="mt-2 text-gray-100 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                    Apply to Job
+                                    <svg aria-hidden="true" class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                                </a>
+    
+                            </div>           
+                        </div>
+                    </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+<script src="{%static 'js/default.js'%}"></script>   
+</body>
+</html>
